@@ -1,0 +1,17 @@
+{
+  "name": "bkper-gs-file-parser",
+  "version": "1.0.0",
+  "description": "Google Apps Script to upload files to Bkper",
+  "main": "Code.js",
+  "scripts": {
+    "test": "echo\\ \"Error: no test specified\\\"&& exit 1\""
+  },
+  "author": "Jacob",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@bkper/bkper-app-types": "^3.29.4",  
+    "@types/google-apps-script": "^1.0.67",
+    "bkper": "^2.6.3",
+    "clasp-types": "^1.4.0"
+  }
+}
