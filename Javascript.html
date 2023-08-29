@@ -1,0 +1,59 @@
+<script>
+    function populateBookDropdown() {
+       google.script.run.withFailureHandler(showError).withSuccessHandler(populateDropdown).getBkperBooks()
+       
+     }
+   
+   
+     function populateDropdown(bookList){
+         //console.log("in the dropdown")
+         var bookSelect = document.getElementById('bookSelect');
+         bookSelect.innerHTML = ''; // Clear existing options
+         bookList.forEach(function(book) {
+           var option = document.createElement('option');
+           option.value = book.id;
+           option.text = book.name;
+           bookSelect.appendChild(option);
+         });
+       }
+     
+      window.onload = function() {
+       populateBookDropdown();
+     };
+   
+     function handler(response) {
+       hideCodeWaiting()
+       var div = document.getElementById('message').textContent = response;
+   
+       setTimeout(clearMessageDiv, 7000);
+   
+       
+     }
+   
+   function clearMessageDiv() {
+     var div = document.getElementById('message');
+     div.textContent = '';
+   }
+   
+   function showCodeWaiting() {
+     var parseButton = document.getElementById('parseButton');
+     parseButton.disabled = true;
+     document.getElementById('waiting').innerHTML = `<img src='https://storage.googleapis.com/bkper-public/addons/loading_3dots.gif'/>`
+   }
+   
+   function hideCodeWaiting() {
+     var parseButton = document.getElementById('parseButton');
+     parseButton.disabled = false; 
+     document.getElementById('waiting').innerHTML = ``
+   }
+   
+   function showError(msg) {
+      var div = $('<div id="error">' +msg + '</div>');
+      
+     setTimeout(function() {
+       $('#error').remove();
+     }, 11000); // auto-dismiss message after 5s.
+     $('#content').after(div);
+   }
+   </script>
+   
