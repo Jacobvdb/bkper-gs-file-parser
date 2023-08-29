@@ -28,7 +28,7 @@ function uploadFile(theForm) {
      }
 }
 
-// check for ofx properties
+// check likelyhood of being an ofx file 
 function isOFXFile(file) {
   var fileExtension = getFileExtension(file.getName());
   if (fileExtension === "ofx") {
@@ -37,8 +37,6 @@ function isOFXFile(file) {
   }
   return false;
 }
-
-
 
 
 
@@ -146,15 +144,7 @@ function getBkperBooks() {
 /
 */
 
-// likelyhood of being an ofx file 
-function isOFXFile(file) {
-  var fileExtension = getFileExtension(file.getName());
-  if (fileExtension === "ofx") {
-    var fileContent = file.getBlob().getDataAsString();
-    return fileContent.includes("<OFX>") && fileContent.includes("</OFX>");
-  }
-  return false;
-}
+
 
 function getFileExtension(filename) {
   return filename.split('.').pop();

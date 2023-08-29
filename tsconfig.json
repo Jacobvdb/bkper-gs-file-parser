@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
       "module": "none",
+      "ignoreDeprecations": "5.0",
       "noImplicitUseStrict": true,
       "experimentalDecorators": true,
       "lib": [ "esnext" ],
