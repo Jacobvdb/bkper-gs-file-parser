@@ -1,25 +1,73 @@
+
+
+<!-- Jquery minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+
+
 <script>
-    function populateBookDropdown() {
-       google.script.run.withFailureHandler(showError).withSuccessHandler(populateDropdown).getBkperBooks()
-       
-     }
+
+$(function() 
+  { 
+    initialize();
+  }
+);
+
+function initialize(){
+  
+  // Get the list of books from Bkper 
+  google.script.run.withSuccessHandler(populateDropdown)
+      .withFailureHandler(showError)
+      .getBkperBooks()
+
+}
+
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+    // function populateBookDropdown() {
+    //    google.script.run.withFailureHandler(showError).withSuccessHandler(populateDropdown).getBkperBooks()       
+    //  }
    
    
-     function populateDropdown(bookList){
-         //console.log("in the dropdown")
-         var bookSelect = document.getElementById('bookSelect');
-         bookSelect.innerHTML = ''; // Clear existing options
-         bookList.forEach(function(book) {
-           var option = document.createElement('option');
-           option.value = book.id;
-           option.text = book.name;
-           bookSelect.appendChild(option);
-         });
-       }
+    //  function populateDropdown(bookList){
+    //     console.log("in the dropdown "  )
+    //      var bookSelect = document.getElementById('bookSelect');
+    //      bookSelect.innerHTML = ''; // Clear existing options
+    //      bookList.forEach(function(book) {
+    //       var option = document.createElement('option');
+    //       option.value = book.id;
+    //       option.text = book.name;
+    //       bookSelect.appendChild(option);
+    //      });
+    //    }
      
-      window.onload = function() {
-       populateBookDropdown();
-     };
+
+    function populateDropdown(bookList) {
+      console.log("in the dropdown");
+      var $bookSelect = $('#bookSelect'); // Use jQuery to select the element
+      $bookSelect.empty(); // Clear existing options
+    
+      $.each(bookList, function(index, book) {
+          var $option = $('<option>');
+          $option.val(book.id);
+          $option.text(book.name);
+          $bookSelect.append($option);
+      });
+
+      $(document).ready(function() {
+      $('select').material_select();
+      });
+      console.log("populated");
+    }
+
+    // window.onload = function() {
+    //    populateBookDropdown();
+    //  };
    
      function handler(response) {
        hideCodeWaiting()
@@ -35,7 +83,8 @@
      div.textContent = '';
    }
    
-   function showCodeWaiting() {
+   function showCodeWaiting(theform) {
+    console.log(theform)
      var parseButton = document.getElementById('parseButton');
      parseButton.disabled = true;
      document.getElementById('waiting').innerHTML = `<img src='https://storage.googleapis.com/bkper-public/addons/loading_3dots.gif'/>`
@@ -56,4 +105,7 @@
      $('#content').after(div);
    }
    </script>
-   
+ 
+ 
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

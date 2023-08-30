@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <?!= HtmlService.createHtmlOutputFromFile('Style').getContent(); ?>
+    
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+
+  
+
+  
+  
+
+<body>
+ 
+
+   
+
+<form id="theForm" class="col s12">
+ 
+    
+     <div class="input-field col s12">
+      <i class=" small material-icons">file_upload</i><select  id="bookSelect" name="selectedBook">
+        </select>
+        <label>Choose Bkper book to upload file</label>
+      </div> 
+    
+  
+  <!-- <div class="row">
+    <div class="col s12">
+      <i class=" small material-icons">file_upload</i><input type="file" name="theFile" >
+    </div>-->
+  
+  <div class="file-field input-field">
+    <div class="btn">
+      <i class=" small material-icons">file_upload</i>
+      <input type="file" name="theFile">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" type="text">
+    </div>
+  </div>
+</div>
+<div class="row">
+   <input type="button" id="parseButton" onclick="showCodeWaiting(this.parentNode);google.script.run.withSuccessHandler(handler).uploadFile(this.parentNode)" value="RECORD" style="margin-top:20px;float:right"> 
+  </div> 
+  </form>
+
+<div id="message" ></div>
+<div id="waiting" > </div>
+
+</div>
+
+</body>
+</html>
+
+<?!= HtmlService.createHtmlOutputFromFile('Javascript').getContent(); ?>
+

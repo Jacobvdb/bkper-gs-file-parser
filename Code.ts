@@ -1,6 +1,6 @@
 function doGet() {
   // testing 
-   return HtmlService.createTemplateFromFile('uploadForm').evaluate();
+   return HtmlService.createTemplateFromFile('App').evaluate();
 }
 
 // receive the file & bookid
